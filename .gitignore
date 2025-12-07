@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.$py.class
+
+# 가상환경 폴더 (혹시 쓰면)
+venv/
+.env/
+
+# MongoDB data (절대 올리지 말기)
+mongo-data/
+*.wt
+diagnostic.data/
+journal/
+*.lock
+
+# 모델 / 체크포인트 / 대용량 파일
+*.pth
+*.pt
+*.ckpt
+*.zip
+*.log

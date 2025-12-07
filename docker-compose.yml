@@ -1,0 +1,45 @@
+services:
+  # 웹 애플리케이션 서비스 (Flask + AI 모델)
+  web:
+    container_name: insect-web
+    image: project-root-web-gpu
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      # 호스트의 5000번 포트를 컨테이너의 5000번 포트와 연결
+      - "5000:5000"
+    environment:
+      # MongoDB 접속 정보 (db/mongo.py에서 사용)
+      # docker-compose 내부 네트워크에서 mongo 서비스는 호스트명이 'mongo'가 됨
+      - MONGO_URI=mongodb://mongo:27017/insect_db
+    volumes:
+      # 로컬의 static/uploads 폴더를 컨테이너 내부와 동기화 (영상 파일 저장소)
+      - ./static/uploads:/app/static/uploads
+      # 로컬의 static/keyframes 폴더를 컨테이너 내부와 동기화 (추출된 이미지 저장소)
+      - ./static/keyframes:/app/static/keyframes
+      # MongoDB 데이터 영구 저장을 위한 볼륨 (필요 시 주석 해제하여 사용 가능)
+      # - ./mongo-data:/data/db
+    depends_on:
+      # mongo 서비스가 실행된 후에 web 서비스 시작
+      - mongo
+    # GPU 사용 관련 설정 (NVIDIA GPU 필요)
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all # 사용 가능한 모든 GPU 할당
+              capabilities: [ gpu ]
+
+  # MongoDB 데이터베이스 서비스
+  mongo:
+    container_name: insect-mongo
+    image: mongo:7
+    restart: always
+    ports:
+      # 로컬 개발 환경에서 접속하기 위해 27018 포트를 27017(기본)로 매핑
+      - "27018:27017"
+    volumes:
+      # DB 데이터를 로컬 폴더에 영구 저장하여 컨테이너 재시작 시에도 유지
+      - ./mongo-data:/data/db

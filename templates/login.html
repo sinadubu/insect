@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>로그인 - Insect AI</title>
+    <!-- 외부 리소스 로드: Tailwind CSS, 폰트, 아이콘 -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Noto+Sans+KR:wght@100..900&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        rel="stylesheet" />
+    <script>
+        // Tailwind CSS 설정: 다크모드 및 색상 테마 정의
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#13b6ec",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#101d22",
+                    },
+                    fontFamily: {
+                        display: ["Space Grotesk", "Noto Sans KR", "sans-serif"],
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display">
+    <!-- 로그인 폼 컨테이너: 화면 중앙 정렬 -->
+    <div class="flex min-h-screen items-center justify-center p-4">
+        <div
+            class="w-full max-w-md rounded-xl bg-white/80 p-8 shadow-lg ring-1 ring-slate-200/60 dark:bg-slate-900/90 dark:ring-slate-800">
+            <!-- 헤더: 제목 및 설명 -->
+            <div class="mb-6 text-center">
+                <h1 class="text-2xl font-bold text-slate-900 dark:text-white">로그인</h1>
+                <p class="mt-2 text-xs text-slate-500 dark:text-slate-400">
+                    Insect AI 계정으로 로그인하세요.
+                </p>
+            </div>
+
+            <!-- 플래시 메시지 표시 영역: 로그인 실패 등의 알림 -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            <div class="mb-4 space-y-2">
+                {% for category, msg in messages %}
+                <div class="rounded-lg bg-red-50 px-3 py-2 text-xs text-red-600 dark:bg-red-900/30 dark:text-red-300">
+                    {{ msg }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% endwith %}
+
+            <!-- 로그인 폼 시작 -->
+            <form method="POST" class="space-y-4">
+                <!-- 이메일 입력 필드 -->
+                <div>
+                    <label class="block text-xs font-medium text-slate-700 dark:text-slate-200">이메일</label>
+                    <input type="email" name="email" required
+                        class="mt-1 w-full rounded-lg border border-slate-300 bg-white/80 px-3 py-2 text-sm text-slate-900 shadow-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/40 dark:border-slate-700 dark:bg-slate-950/60 dark:text-slate-100">
+                </div>
+                <!-- 비밀번호 입력 필드 -->
+                <div>
+                    <label class="block text-xs font-medium text-slate-700 dark:text-slate-200">비밀번호</label>
+                    <input type="password" name="password" required
+                        class="mt-1 w-full rounded-lg border border-slate-300 bg-white/80 px-3 py-2 text-sm text-slate-900 shadow-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/40 dark:border-slate-700 dark:bg-slate-950/60 dark:text-slate-100">
+                </div>
+                <!-- 로그인 제출 버튼 -->
+                <button type="submit"
+                    class="mt-2 flex w-full items-center justify-center rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white hover:bg-primary/90 focus:outline-none focus:ring-4 focus:ring-primary/40">
+                    <span class="material-symbols-outlined mr-1 text-sm">login</span>
+                    로그인
+                </button>
+            </form>
+
+            <!-- 회원가입 링크 -->
+            <p class="mt-4 text-center text-[11px] text-slate-500 dark:text-slate-400">
+                아직 계정이 없으신가요?
+                <a href="{{ url_for('register') }}" class="font-semibold text-primary hover:underline">회원가입</a>
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>
