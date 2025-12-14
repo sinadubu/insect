@@ -3,11 +3,11 @@ __pycache__/
 *.py[cod]
 *.$py.class
 
-# 가상환경 폴더 (혹시 쓰면)
+# 가상환경 폴더 
 venv/
 .env/
 
-# MongoDB data (절대 올리지 말기)
+# MongoDB data
 mongo-data/
 *.wt
 diagnostic.data/
@@ -20,3 +20,11 @@ journal/
 *.ckpt
 *.zip
 *.log
+
+# generated files
+static/keyframes/*
+static/uploads/*
+
+# keep folder placeholders
+!static/keyframes/.gitkeep
+!static/uploads/.gitkeep
