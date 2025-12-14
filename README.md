@@ -11,8 +11,10 @@
 
 ## 데모
 
-- 데모 영상: 레포지토리 루트의 `demo.mp4` 파일을 GitHub에서 열어 재생하거나 다운로드해서 확인할 수 있습니다.
-- 모델 가중치: 레포지토리 루트의 `yolo.pt`, `best_resnet50_mealworm.pth`가 포함되어 있습니다.
+- **시연 영상**: 레포지토리 루트의 `demo.mp4`는 시스템 작동 모습을 녹화한 단순 시연용 영상입니다. 다운로드하여 플레이어로 확인해 보세요.
+- **모델 가중치**: 레포지토리 루트의 `yolo.pt`, `best_resnet50_mealworm.pth`가 포함되어 있습니다.
+- **테스트용 영상**: `비정상이 있는 영상.mp4`, `정상만 있는 영상.mp4`
+  - *`demo.mp4`는 단순 시연용입니다. 직접 업로드할 때는 위 테스트용 영상을 사용해 주세요.*
   - 본 레포는 대용량 파일을 Git LFS로 관리합니다. 클론 후 반드시 `git lfs pull`을 실행하세요.
 
 ## 주요 기능
@@ -49,4 +51,6 @@ project-root/
 ├─ requirements.txt
 ├─ yolo.pt
 ├─ best_resnet50_mealworm.pth
-└─ demo.mp4
+├─ demo.mp4
+├─ 비정상이 있는 영상.mp4
+└─ 정상만 있는 영상.mp4
