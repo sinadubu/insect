@@ -1,9 +1,9 @@
 # Python
 __pycache__/
 *.py[cod]
-*.$py.class
+*$py.class
 
-# 가상환경 폴더 
+# 가상환경 폴더
 venv/
 .env/
 
@@ -14,10 +14,12 @@ diagnostic.data/
 journal/
 *.lock
 
-# 모델 / 체크포인트 / 대용량 파일
+# 모델 / 체크포인트 / 대용량 파일 (기본은 무시)
 *.pth
 *.pt
 *.ckpt
+*.onnx
+*.mp4
 *.zip
 *.log
 
@@ -28,3 +30,11 @@ static/uploads/*
 # keep folder placeholders
 !static/keyframes/.gitkeep
 !static/uploads/.gitkeep
+
+# allow demo/model files at repo root (루트에 둔 것만 추적)
+!/*.pt
+!/*.pth
+!/*.ckpt
+!/*.onnx
+!/*.mp4
+!/*.zip
